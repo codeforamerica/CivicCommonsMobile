@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CC14AB714C16C1600073006 /* civiccommons57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC14AB614C16C1600073006 /* civiccommons57x57.png */; };
+		2CC14ABA14C16C2C00073006 /* civiccommons114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC14AB914C16C2C00073006 /* civiccommons114x114.png */; };
+		2CC14ABC14C16C5100073006 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC14ABB14C16C5100073006 /* Default.png */; };
+		2CC14ABE14C16C5A00073006 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC14ABD14C16C5A00073006 /* Default@2x.png */; };
 		2CD81B4214C1699600C25F12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD81B4114C1699600C25F12 /* Foundation.framework */; };
 		2CD81B4414C1699600C25F12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD81B4314C1699600C25F12 /* UIKit.framework */; };
 		2CD81B4614C1699600C25F12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD81B4514C1699600C25F12 /* CoreGraphics.framework */; };
@@ -33,9 +37,14 @@
 		2CD81B7C14C1699600C25F12 /* Capture.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2CD81B7B14C1699600C25F12 /* Capture.bundle */; };
 		2CD81B7E14C1699600C25F12 /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CD81B7D14C1699600C25F12 /* PhoneGap.plist */; };
 		2CD81B8214C1699600C25F12 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD81B8114C1699600C25F12 /* AppDelegate.m */; };
+		2CD81B8B14C16A0100C25F12 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 2CD81B8A14C16A0100C25F12 /* www */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2CC14AB614C16C1600073006 /* civiccommons57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = civiccommons57x57.png; sourceTree = "<group>"; };
+		2CC14AB914C16C2C00073006 /* civiccommons114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = civiccommons114x114.png; sourceTree = "<group>"; };
+		2CC14ABB14C16C5100073006 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		2CC14ABD14C16C5A00073006 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2CD81B3D14C1699600C25F12 /* CivicCommons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CivicCommons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD81B4114C1699600C25F12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2CD81B4314C1699600C25F12 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -50,10 +59,10 @@
 		2CD81B5514C1699600C25F12 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2CD81B5714C1699600C25F12 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		2CD81B5914C1699600C25F12 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		2CD81B5D14C1699600C25F12 /* CivicCommons-Info.plist */ = {isa = PBXFileReference; path = "CivicCommons-Info.plist"; sourceTree = "<group>"; };
+		2CD81B5D14C1699600C25F12 /* CivicCommons-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CivicCommons-Info.plist"; sourceTree = "<group>"; };
 		2CD81B5F14C1699600C25F12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CD81B6114C1699600C25F12 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2CD81B6314C1699600C25F12 /* CivicCommons-Prefix.pch */ = {isa = PBXFileReference; path = "CivicCommons-Prefix.pch"; sourceTree = "<group>"; };
+		2CD81B6314C1699600C25F12 /* CivicCommons-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CivicCommons-Prefix.pch"; sourceTree = "<group>"; };
 		2CD81B6414C1699600C25F12 /* PhoneGap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhoneGap.framework; path = /Users/Shared/PhoneGap/Frameworks/PhoneGap.framework; sourceTree = "<absolute>"; };
 		2CD81B6914C1699600C25F12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CD81B6D14C1699600C25F12 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -64,9 +73,10 @@
 		2CD81B7914C1699600C25F12 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/splash/Default@2x.png"; sourceTree = "<group>"; };
 		2CD81B7B14C1699600C25F12 /* Capture.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Capture.bundle; path = Resources/Capture.bundle; sourceTree = "<group>"; };
 		2CD81B7D14C1699600C25F12 /* PhoneGap.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PhoneGap.plist; sourceTree = "<group>"; };
-		2CD81B8014C1699600C25F12 /* AppDelegate.h */ = {isa = PBXFileReference; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
+		2CD81B8014C1699600C25F12 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		2CD81B8114C1699600C25F12 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
-		2CD81B8414C1699600C25F12 /* README */ = {isa = PBXFileReference; name = README; path = Plugins/README; sourceTree = "<group>"; };
+		2CD81B8414C1699600C25F12 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
+		2CD81B8A14C16A0100C25F12 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +114,11 @@
 		2CD81B2F14C1699600C25F12 = {
 			isa = PBXGroup;
 			children = (
+				2CC14ABD14C16C5A00073006 /* Default@2x.png */,
+				2CC14ABB14C16C5100073006 /* Default.png */,
+				2CC14AB914C16C2C00073006 /* civiccommons114x114.png */,
+				2CC14AB614C16C1600073006 /* civiccommons57x57.png */,
+				2CD81B8A14C16A0100C25F12 /* www */,
 				2CD81B5B14C1699600C25F12 /* CivicCommons */,
 				2CD81B4014C1699600C25F12 /* Frameworks */,
 				2CD81B3E14C1699600C25F12 /* Products */,
@@ -290,6 +305,11 @@
 				2CD81B7A14C1699600C25F12 /* Default@2x.png in Resources */,
 				2CD81B7C14C1699600C25F12 /* Capture.bundle in Resources */,
 				2CD81B7E14C1699600C25F12 /* PhoneGap.plist in Resources */,
+				2CD81B8B14C16A0100C25F12 /* www in Resources */,
+				2CC14AB714C16C1600073006 /* civiccommons57x57.png in Resources */,
+				2CC14ABA14C16C2C00073006 /* civiccommons114x114.png in Resources */,
+				2CC14ABC14C16C5100073006 /* Default.png in Resources */,
+				2CC14ABE14C16C5A00073006 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +496,7 @@
 				2CD81B8914C1699600C25F12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
