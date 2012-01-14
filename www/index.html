@@ -17,7 +17,7 @@
         <script type="text/javascript" src="js/phonegap-0.9.3.js"></script>
         <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore.js"></script>
         <script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone.js"></script>
-        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="app.js"></script>
         
             
         <!-- templates -->
@@ -34,18 +34,25 @@
     <body>
     
     <!-- Categories: #one -->
-    <div data-role="page" id="categories" data-theme="c">
+    <div data-role="page" id="categories" data-theme="c" >
         <div data-role="header">
             <h1>Marketplace</h1>
-            <a href="#add-popup" data-role="button" data-transition="flip" data-icon="add" id="add-button">Add</a>
         </div>
-        <ul data-role="listview" >
+        <ul data-role="listview">
             <!-- the contents of the list view will be rendered via the backbone view -->
-        </div>
+        </ul>
 
-        <div data-role="footer">
-            <h4>Page Footer</h4>
-        </div>
+        <div data-role="footer" data-position="fixed">		
+            <div data-role="navbar" data-iconpos="top" >
+                <ul>
+                    <li><a data-icon="star" href="#featured">Featured</a></li>
+                    <li><a data-icon="grid" href="#categories">Categories</a></li>
+                    <li><a data-icon="search" href="#search">Search</a></li>
+                    <li><a data-icon="plus" href="#add">Add</a></li>
+                </ul>
+            </div><!-- /navbar -->
+        </div><!-- /footer -->
+        
     </div>
 
     
@@ -53,21 +60,30 @@
     <!-- Applications: #two -->
     <div data-role="page" id="application-list" data-theme="c">
         <div data-role="header">
+            <a href="#categories" data-icon="left">Back</a>
             <h1>Applications</h1>
         </div>
-        <ul data-role="listview" >
+        <ul data-role="listview">
             <!-- the contents of the list view will be rendered via the backbone view -->
-        </div>
-        <div data-role="footer">
-            <h4>Page Footer</h4>
-        </div>
+        </ul>
+        <div data-role="footer" data-position="fixed">		
+            <div data-role="navbar" data-iconpos="top" >
+                <ul>
+                    <li><a data-icon="star" href="#categories">Featured</a></li>
+                    <li><a data-icon="grid" href="#categories">Categories</a></li>
+                    <li><a data-icon="search" href="#search">Search</a></li>
+                    <li><a data-icon="plus" href="#add">Add</a></li>
+                </ul>
+            </div><!-- /navbar -->
+        </div><!-- /footer -->
     </div>
     
     
     <!-- Single Application: #three -->
-    <div data-role="page" id="add-popup">
+    <div data-role="page" id="add">
         
         <div data-role="header" data-theme="c">
+            <a href="#categories" data-icon="left">Back</a>
             <h1>Applications</h1>
         </div>
         
@@ -79,9 +95,16 @@
             <p><a href="#categories" data-rel="back" data-role="button" data-inline="true" data-icon="back">Back</a></p>	
         </div>
         
-        <div data-role="footer">
-            <h4>Page Footer</h4>
-        </div>
+        <div data-role="footer" data-position="fixed">		
+            <div data-role="navbar" data-iconpos="top" >
+                <ul>
+                    <li><a data-icon="star" href="#featured">Featured</a></li>
+                    <li><a data-icon="grid" href="#categories">Categories</a></li>
+                    <li><a data-icon="search" href="#search">Search</a></li>
+                    <li><a data-icon="plus" href="#add">Add</a></li>
+                </ul>
+            </div><!-- /navbar -->
+        </div><!-- /footer -->
     </div>
     
         

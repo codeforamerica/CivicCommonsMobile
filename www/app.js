@@ -9,23 +9,31 @@ var CivicCommons = {};
     /*
      * Models 
      */
-    // get categories
+ 
+    // get featured applications
+    CivicCommons.Featured = Backbone.Collection.extend({
+        model: CivicCommons.category,
+         url:   "http://marketplace.civiccommons.org/api/v1/node.json"                                                         
+
+    }); 
+    // get categories of application
     CivicCommons.Categories = Backbone.Collection.extend({
         model: CivicCommons.category,
         url:   "http://marketplace.civiccommons.org/api/v1/taxonomy_term.json?parameters[vid]=15"
 
     });
-    // get list of applications
-    CivicCommons.Applications = Backbone.Collection.extend({
+    // get list of all applications
+    CivicCommons.AllApps = Backbone.Collection.extend({
          model: CivicCommons.application,
          url:   "http://marketplace.civiccommons.org/api/v1/node.json"                                                         
     });
  
-     // get single application
-    CivicCommons.Apps = Backbone.Collection.extend({
-         model: CivicCommons.apps,
+     // get single application data
+    CivicCommons.SingleApp = Backbone.Collection.extend({
+         model: CivicCommons.single,
          url:   "http://marketplace.civiccommons.org/api/v1/node.json"                                                         
     });
+
 
 
  
@@ -62,42 +70,6 @@ var CivicCommons = {};
         
         add: function(item) {
             var categoriesList = $('#categories-list'),
-                template       = this.template;
-            
-            categoriesList.append(template(item.toJSON()));
-            categoriesList.listview('refresh');
-        }
-     });
- 
-     // get list of applications
-     CivicCommons.ApplicationListView = Backbone.View.extend({
-        tagName:    'ul',
-        id:         'application-list',
-        attributes: {"data-role": 'listview'},
-
-        initialize: function() {
-          this.collection.bind('add', this.render, this);
-          this.template = _.template($('#application-list-item-template').html());
-        },
-
-
-        render: function() {
-            var container  = this.options.viewContainer,
-                applications = this.collection,
-                template   = this.template,
-                listView   = $(this.el);
-            
-            listView.empty();
-            applications.each(function(application){
-              listView.append(template(application.toJSON()));
-            });
-            container.html(listView);
-            container.trigger('create');
-            return this;
-        },
-        
-        add: function(item) {
-            var categoriesList = $('#applications-list'),
                 template       = this.template;
             
             categoriesList.append(template(item.toJSON()));
