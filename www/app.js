@@ -4,7 +4,53 @@
 var CivicCommons = {};
 
 (function($){
+     
+     // onSuccess Callback
+     //   This method accepts a `Position` object, which contains
+     //   the current GPS coordinates
+     //
+     function onSuccess(location) {
+
+ /*
+  http://marketplace.civiccommons.org/api/v1/views/organization_api.json?display_id=field_view&filters[address_administrative_area_state=ca&filters[address_locality_city]=san+francisco
+  
+  Then, going through the results, we can get any Interactions of that organization. For instance, for SF Municapal Transite Authority.
+  
+  http://marketplace.civiccommons.org/api/v1/views/interaction_api.json?display_id=node_view&filters[organization]=13642
+  
+  Then, finally, we get any applications in each of those results; field name is field_interaction_application.
+  
+  
+  http://marketplace.civiccommons.org/api/v1/node/13351.json
+  
+*/
+// console.log(location);
+        var message = document.getElementById("message"), html = [];
  
+        $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?latlng='+location.coords.latitude + ','+  location.coords.longitude + '&sensor=true', function(data) {
+              alert(data.results.address_components);
+//              alert(data.toString());
+//              alert('Load was performed.');
+        });
+
+
+ //
+         html.push("<img width='256' height='256' src='http://maps.google.com/maps/api/staticmap?center=", location.coords.latitude, ",", location.coords.longitude, "&markers=size:small|color:blue|", location.coords.latitude, ",", location.coords.longitude, "&zoom=14&size=256x256&sensor=false' />");
+         html.push("<p>Longitude: ", location.coords.longitude, "</p>");
+         html.push("<p>Latitude: ", location.coords.latitude, "</p>");
+         html.push("<p>Accuracy: ", location.coords.accuracy, " meters</p>");
+         message.innerHTML = html.join("");
+     }
+
+ 
+     // onError Callback receives a PositionError object
+     //
+     function onError(error) {
+     alert('code: '    + error.code    + '\n' +
+           'message: ' + error.message + '\n');
+     }
+     
+     navigator.geolocation.getCurrentPosition(onSuccess, onError);
  
     /*
      * Models 
@@ -31,7 +77,7 @@ var CivicCommons = {};
      // get single application data
     CivicCommons.SingleApp = Backbone.Collection.extend({
          model: CivicCommons.single,
-         url:   "http://marketplace.civiccommons.org/api/v1/node.json"                                                         
+         url:   "http://marketplace.civiccommons.org/api/v1/node/13373.json"
     });
 
 
