@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+        <title>CivicCommons MarketPlace</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <meta charset="utf-8">
+            
+
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+        <!-- iPad/iPhone specific css below, add after your main css >
+         <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
+         <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
+         -->
+
+        <script type="text/javascript" src="js/phonegap-0.9.3.js"></script>
+        <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore.js"></script>
+        <script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        
+            
+        <!-- templates -->
+        <script type="text/template" id="category-list-item-template">
+            <li><a href="#application-list" identifier="<%= vid %>"><%= name %> </a></li>
+        </script>
+
+        <script type="text/template" id="application-list-item-template">
+            <li><a href="#application-list" identifier="<%= nid %>"><%= title %> </a></li>
+        </script>
+            
+            
+    </head> 
+    <body>
+    
+    <!-- Categories: #one -->
+    <div data-role="page" id="categories" data-theme="c">
+        <div data-role="header">
+            <h1>Marketplace</h1>
+            <a href="#add-popup" data-role="button" data-transition="flip" data-icon="add" id="add-button">Add</a>
+        </div>
+        <ul data-role="listview" >
+            <!-- the contents of the list view will be rendered via the backbone view -->
+        </div>
+
+        <div data-role="footer">
+            <h4>Page Footer</h4>
+        </div>
+    </div>
+
+    
+    
+    <!-- Applications: #two -->
+    <div data-role="page" id="application-list" data-theme="c">
+        <div data-role="header">
+            <h1>Applications</h1>
+        </div>
+        <ul data-role="listview" >
+            <!-- the contents of the list view will be rendered via the backbone view -->
+        </div>
+        <div data-role="footer">
+            <h4>Page Footer</h4>
+        </div>
+    </div>
+    
+    
+    <!-- Single Application: #three -->
+    <div data-role="page" id="add-popup">
+        
+        <div data-role="header" data-theme="c">
+            <h1>Applications</h1>
+        </div>
+        
+        <div data-role="content" data-theme="c">	
+            <h2>Popup</h2>
+            <p>I have an id of "popup" on my page container and only look like a dialog because the link to me had a <code>data-rel="dialog"</code> attribute which gives me this inset look and a <code>data-transition="pop"</code> attribute to change the transition to pop. Without this, I'd be styled as a normal page.</p>		
+            <p>I have an id of "popup" on my page container and only look like a dialog because the link to me had a <code>data-rel="dialog"</code> attribute which gives me this inset look and a <code>data-transition="pop"</code> attribute to change the transition to pop. Without this, I'd be styled as a normal page.</p>		
+            
+            <p><a href="#categories" data-rel="back" data-role="button" data-inline="true" data-icon="back">Back</a></p>	
+        </div>
+        
+        <div data-role="footer">
+            <h4>Page Footer</h4>
+        </div>
+    </div>
+    
+        
+                
+    </body>
+</html></html>
