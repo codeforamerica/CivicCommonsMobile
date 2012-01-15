@@ -29,7 +29,7 @@ var CivicCommons = {};
                     model: CivicCommons.searchresults,
                      url: location_url
                 });
-                var resultsContainer = $('#searchresults').find(":jqmData(role='listview')"),                                                   
+                var resultsContainer = $('#search_results_list'),                                                   
                 searchListView = new CivicCommons.SearchResultsView({collection: CivicCommons.searchresults, viewContainer: resultsContainer});
                 searchListView.render();   
                                                    
