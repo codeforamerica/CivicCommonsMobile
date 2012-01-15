@@ -4,7 +4,7 @@
 var CivicCommons = {};
 
 (function($){
- 
+
     /*
      * List Views 
      */
@@ -15,7 +15,7 @@ var CivicCommons = {};
 			},
 			render: function(){
 	         $(this.el).html(this.template);  
-				$("#search_container").html(this.el);
+			 $("#search_container").html(this.template).trigger("create");
 	         return this;                                                                                                  
 			},
 			events: {
