@@ -15,7 +15,7 @@ var CivicCommons = {};
 			},
 			render: function(){
 	         $(this.el).html(this.template);  
-			 $("#search_container").html(this.template).trigger("create");
+			 $("#search_container").html(this.el).trigger("create");
 	         return this;                                                                                                  
 			},
 			events: {
