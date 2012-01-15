@@ -18,9 +18,12 @@
             
         <!-- templates -->
         <script type="text/template" id="search_template">
-            <label><%= search_label %></label>
-            <input type="text" id="search_input" />
-            <input type="button" id="search_button" value="Search" />
+            <div data-role="fieldcontain">
+                <h1>LocalAp.ps</h1>
+                <label for="search">Search Input:</label>
+                <input type="text" name="searchterm" id="searchterm" value="" />
+                <input type="button" name="searchbutton" id="searchbutton" value="Find Apps" />
+            </div>            
         </script>
             
         <script type="text/template" id="application-list-item-template">
@@ -36,21 +39,39 @@
         <div data-role="header">
             <h1>Your Location</h1>
         </div>
-        <div id="search_container">        
-            <!--
-            <div data-role="fieldcontain">
-                <h1>LocalAp.ps</h1>
-                <label for="search">Search Input:</label>
-                <input type="text" name="searchterm" id="searchterm" value="" />
-                <input type="button" name="searchbutton" id="searchbutton" value="Find Apps" />
-            </div>-->
+        <div id="search_container">
         </div>
 
         <div data-role="footer">		
         </div><!-- /footer -->
         
     </div>
+        
+    <!-- Categories: #one -->
+    <div data-role="page" id="resultsview" data-theme="c" >
+        <div data-role="header">
+            <h1>Search Results</h1>
+        </div>
+        <div id="search_results">        
+        </div>
+        
+        <div data-role="footer">		
+        </div><!-- /footer -->
+        
+    </div>        
 
+    <!-- Categories: #one -->
+    <div data-role="page" id="application_view" data-theme="c" >
+        <div data-role="header">
+            <h1>Application</h1>
+        </div>
+        <div id="application_container">        
+        </div>
+        
+        <div data-role="footer">		
+        </div><!-- /footer -->
+        
+    </div>        
                 
     </body>
 </html></html>

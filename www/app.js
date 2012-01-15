@@ -22,9 +22,17 @@ var CivicCommons = {};
 				"click input[type=button]": "doSearch"  
 			},
 			doSearch: function( event ){
-				// Button clicked, you can access the element that was clicked with event.currentTarget
-				alert( "Search for " + $("#searchterm").val() );
-			}
+               var location_url = 'http://marketplace.civiccommons.org/api/v1/views/organization_api.json?display_id=field_view&filters[address_administrative_area_state=ca&filters[address_locality_city]=' + $('#searchterm').val();
+               CivicCommons.SearchResults = Backbone.Collection.extend({
+                    model: CivicCommons.searchresults,
+                     url: location_url
+               });
+                                            
+               SearchResults = new CivicCommons.SearchResults();
+               SearchResults.render();
+                                                   
+                                                   
+           }
 		});
 
      /*
@@ -84,6 +92,7 @@ $('#searchview').live('pageinit', function(event){
 });
 
 $('#search_button').live('click', function(){
+                         
 //    CivicCommons.categories = new CivicCommons.Categories();
 //    CivicCommons.categories.fetch({async: false}); // use async false to have the app wait for data before rendering the list                      
 });
