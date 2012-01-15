@@ -9,18 +9,18 @@ var CivicCommons = {};
      * List Views 
      */
     CivicCommons.SearchForm = Backbone.View.extend({
-		initialize: function(){
-			this.render();
-            var variables = { search_label: "My Search" };
-            this.template = _.template($('#search_template').html(), variables);
+		initialize: function(){                                                   
+//          this.template = _.template( $("#search_template").html(), variables );
+            this.collection.bind('add', this.add);
                                                    
-//            this.template = _.template( $("#search_template").html(), variables );
 		},
 		render: function(){
-            return this;                                                                                                  
+           var variables = { search_label: "My Search" };
+           this.template = _.template($('#search_template').html(), variables);
+           return this;                                                                                                  
 		},
 		events: {
-			"click input[type=button]": "doSearch"  
+			"click #searchbutton": "doSearch"  
 		},
 		doSearch: function( event ){
 			// Button clicked, you can access the element that was clicked with event.currentTarget
@@ -61,8 +61,8 @@ var CivicCommons = {};
 
         $.getJSON(googlemap_url, function(data) {
                var city =  data.results[0].address_components[3].long_name;
-               var state =  data.results[0].address_components[5].long_name;
-                  $('#searchterm').val(city + ' '+ state);
+               var state =  data.results[0].address_components[4].long_name;
+               $('#searchterm').val(city);
         });
      
      }
