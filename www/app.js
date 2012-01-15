@@ -29,7 +29,7 @@ var CivicCommons = {};
                     model: CivicCommons.searchresults,
                      url: location_url
                 });
-                var resultsContainer = $('#search_results_list'),                                                   
+                var resultsContainer = $('#search_results_container'),                                                   
                 searchListView = new CivicCommons.SearchResultsView({collection: CivicCommons.SearchResults, viewContainer: resultsContainer});
                 searchListView.render();   
                                                    
@@ -43,7 +43,7 @@ var CivicCommons = {};
      */
     CivicCommons.SearchResultsView = Backbone.View.extend({
         tagName: 'ul',
-        id: 'searchresults-list',
+        id: 'search-results-list',
         attributes: {"data-role": 'listview'},
 
         initialize: function() {
