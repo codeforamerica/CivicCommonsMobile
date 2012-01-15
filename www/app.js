@@ -23,13 +23,14 @@ var CivicCommons = {};
 			},
 			doSearch: function( event ){
                var location_url = 'http://marketplace.civiccommons.org/api/v1/views/organization_api.json?display_id=field_view&filters[address_administrative_area_state=ca&filters[address_locality_city]=' + $('#searchterm').val();
+                                                   alert(location_url);
                CivicCommons.SearchResults = Backbone.Collection.extend({
                     model: CivicCommons.searchresults,
                      url: location_url
                });
-                                            
-               SearchResults = new CivicCommons.SearchResults();
-               SearchResults.render();
+                var resultsresultscontainer = $('#searchresults').find(":jqmData(role='listview')"),                                                   
+                searchListView = new CivicCommons.SearchResultsView({collection: CivicCommons.searchresults, viewContainer: resultsresultscontainer});
+                searchListView.render();                                                   
                                                    
                                                    
            }
@@ -38,17 +39,42 @@ var CivicCommons = {};
      /*
      * List Views 
      */
-    CivicCommons.SearchResults = Backbone.View.extend({
-		initialize: function(){
-			this.render();
-		},
-		render: function(){                                                   
-		},
-		events: {
-		},
-		doSearch: function( event ){
-		}
-	});
+    CivicCommons.SearchResultsView = Backbone.View.extend({
+        tagName: 'ul',
+        id: 'searchresults-list',
+        attributes: {"data-role": 'listview'},
+
+        initialize: function() {
+          this.collection.bind('add', this.render, this);
+          this.template = _.template($('#search-results-template').html());
+        },
+
+
+        render: function() {
+            var container = this.options.viewContainer,
+                categories = this.collection,
+                template = this.template,
+                listView = $(this.el);
+            
+            listView.empty();
+            categories.each(function(category){
+              listView.append(template(category.toJSON()));
+            });
+            container.html(listView);
+            container.trigger('create');
+            return this;
+        },
+        
+        add: function(item) {
+            var categoriesList = $('#categories-list'),
+                template = this.template;
+            
+            categoriesList.append(template(item.toJSON()));
+            categoriesList.listview('refresh');
+        }
+     });
+
+
  
     CivicCommons.Application = Backbone.View.extend({
 		initialize: function(){
