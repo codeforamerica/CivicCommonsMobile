@@ -30,7 +30,7 @@ var CivicCommons = {};
                      url: location_url
                 });
                 var resultsContainer = $('#search_results_list'),                                                   
-                searchListView = new CivicCommons.SearchResultsView({collection: CivicCommons.searchresults, viewContainer: resultsContainer});
+                searchListView = new CivicCommons.SearchResultsView({collection: CivicCommons.SearchResults, viewContainer: resultsContainer});
                 searchListView.render();   
                                                    
                                                    
@@ -47,6 +47,7 @@ var CivicCommons = {};
         attributes: {"data-role": 'listview'},
 
         initialize: function() {
+          console.log(this);
           this.collection.bind('add', this.render, this);
           this.template = _.template($('#search-results-template').html());
         },
