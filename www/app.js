@@ -25,12 +25,12 @@ var CivicCommons = {};
                var location_url = 'http://marketplace.civiccommons.org/api/v1/views/organization_api.json?display_id=field_view&filters[address_administrative_area_state=ca&filters[address_locality_city]=' + $('#searchterm').val();
                 alert(location_url);
                                                    
-                CivicCommons.searchResults = Backbone.Collection.extend({
-                    model: CivicCommons.searchResults,
+                CivicCommons.SearchResults = Backbone.Collection.extend({
+                    model: CivicCommons.searchresults,
                      url: location_url
                 });
-                var resultsContainer = $('#searchResults').find(":jqmData(role='listview')"),                                                   
-                searchListView = new CivicCommons.searchResultsView({collection: CivicCommons.searchResults, viewContainer: resultsContainer});
+                var resultsContainer = $('#searchresults').find(":jqmData(role='listview')"),                                                   
+                searchListView = new CivicCommons.SearchResultsView({collection: CivicCommons.searchresults, viewContainer: resultsContainer});
                 searchListView.render();   
                                                    
                                                    
@@ -41,9 +41,9 @@ var CivicCommons = {};
      /*
      * List Views 
      */
-    CivicCommons.searchResultsView = Backbone.View.extend({
+    CivicCommons.SearchResultsView = Backbone.View.extend({
         tagName: 'ul',
-        id: 'searchResults-list',
+        id: 'searchresults-list',
         attributes: {"data-role": 'listview'},
 
         initialize: function() {
