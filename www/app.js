@@ -8,25 +8,24 @@ var CivicCommons = {};
     /*
      * List Views 
      */
-    CivicCommons.SearchForm = Backbone.View.extend({
-		initialize: function(){                                                   
-//          this.template = _.template( $("#search_template").html(), variables );
-            this.collection.bind('add', this.add);
-                                                   
-		},
-		render: function(){
-           var variables = { search_label: "My Search" };
-           this.template = _.template($('#search_template').html(), variables);
-           return this;                                                                                                  
-		},
-		events: {
-			"click #searchbutton": "doSearch"  
-		},
-		doSearch: function( event ){
-			// Button clicked, you can access the element that was clicked with event.currentTarget
-			alert( "Search for " + $("#searchterm").val() );
-		}
-	});
+	CivicCommons.SearchForm = Backbone.View.extend({
+			initialize: function(){
+	         var variables = { search_label: "My Search" };
+	         this.template = _.template($('#search_template').html(), variables);                                                   
+			},
+			render: function(){
+	         $(this.el).html(this.template);  
+				$("#search_container").html(this.el);
+	         return this;                                                                                                  
+			},
+			events: {
+				"click input[type=button]": "doSearch"  
+			},
+			doSearch: function( event ){
+				// Button clicked, you can access the element that was clicked with event.currentTarget
+				alert( "Search for " + $("#searchterm").val() );
+			}
+		});
 
      /*
      * List Views 
