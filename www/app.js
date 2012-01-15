@@ -23,6 +23,7 @@ var CivicCommons = {};
 			},
 			doSearch: function( event ){
                var location_url = 'http://marketplace.civiccommons.org/api/v1/views/organization_api.json?display_id=field_view&filters[address_administrative_area_state=ca&filters[address_locality_city]=' + $('#searchterm').val();
+                    window.location = '#searchresults';
                 alert(location_url);
                                                    
                 CivicCommons.SearchResults = Backbone.Collection.extend({

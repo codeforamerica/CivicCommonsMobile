@@ -19,7 +19,11 @@
         <!-- templates -->
         <script type="text/template" id="search_template">
             <div data-role="fieldcontain">
-                <h1>LocalAp.ps</h1>
+            <br>
+            <br>
+                <br>
+                <br>
+                <h1 style="display:none;">LocalAp.ps</h1>
                 <label for="search">Search Input:</label>
                 <input type="text" name="searchterm" id="searchterm" value="" />
                 <input type="button" name="searchbutton" id="searchbutton" value="Find Apps" />
@@ -35,7 +39,7 @@
     <body id="message">
     
     <!-- Categories: #one -->
-    <div data-role="page" id="searchview" data-theme="c" >
+    <div data-role="page" id="searchview" data-theme="c" style="background:url('css/images/background.png') 0 50px">
         <div data-role="header">
             <h1>Your Location</h1>
         </div>
@@ -54,9 +58,16 @@
         </div>
         
         <div id="search_results_container">
+            <ul data-role="listview" data-theme="c">
+            <li><a href="#application_view">YouGov</a></li>
+            <li><a href="#application_view">SF Park</a></li>
+            <li><a href="#application_view">Federal Register 2.0</a></li>
+            <li><a href="#application_view">Adopt A Hydrant</a></li>
+            </ul>
         </div>
         
         <div data-role="footer">		
+            <a data-direction="reverse" href="#searchview">Back</a>
         </div><!-- /footer -->
         
     </div>        
@@ -66,10 +77,21 @@
         <div data-role="header">
             <h1>Application</h1>
         </div>
-        <div id="application_container">        
+        <div id="application_container" class="ui-grid-a">
+            <img src="http://marketplace.civiccommons.org/sites/default/files/styles/app_detail_logo/public/content/applications/logos/SF%20Park%20Logo.png">
+            <h1>SFPark Asset Manager</h1>
+            <p>SFPark Asset Manager is a project created with OpenGeo by the San Francisco Municipal Transportation Agency (SFMTA) to display parking availability in the San Francisco area. SFpark works by collecting and distributing real-time information about where parking is available so drivers can quickly find open spaces.</p>
+            
+            <p>To help achieve the right level of parking availability, SFpark periodically adjusts meter and garage pricing up and down to match demand. Demand-responsive pricing encourages drivers to park in underused areas and garages, reducing demand in overused areas. Through SFpark, real-time data and demand-responsive pricing work together to readjust parking patterns in the City so that parking is easier to find.</p>
+            <h2>PLACES WHERE THIS APP IS IN USE</h2>
+                <ul data-role="listview" data-theme="c">
+                    <li><a href="#application_view">New York</a></li>
+                    <li><a href="#application_view">Dallas</a></li>
+                </ul>                
         </div>
         
         <div data-role="footer">		
+            <a data-direction="reverse" href="#application_view">Back</a>
         </div><!-- /footer -->
         
     </div>        
