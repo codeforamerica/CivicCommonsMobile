@@ -4,125 +4,134 @@
 var CivicCommons = {};
 
 (function($){
+	
+	CivicCommons.App = Backbone.Model.extend();
+
+	CivicCommons.AppCollection = Backbone.Collection.extend({
+	    model: CivicCommons.App
+	});
+				
 
     /*
      * List Views 
      */
-	CivicCommons.SearchForm = Backbone.View.extend({
-			initialize: function(){
-	         var variables = { search_label: "My Search" };
-	         this.template = _.template($('#search_template').html(), variables);                                                   
-			},
-			render: function(){
-	         $(this.el).html(this.template);  
-			 $("#search_container").html(this.el).trigger("create");
-	         return this;                                                                                                  
-			},
-			events: {
-				"click #searchbutton": "doSearch"  
-			},
-			doSearch: function( event ){
-               var location_url = 'http://marketplace.civiccommons.org/api/v1/views/organization_api.json?display_id=field_view&filters[address_administrative_area_state=ca&filters[address_locality_city]=' + $('#searchterm').val();
-                    window.location = '#searchresults';
-                alert(location_url);
-                                                   
-                CivicCommons.SearchResults = Backbone.Collection.extend({
-                    model: CivicCommons.searchresults,
-                     url: location_url
-                });
-                var resultsContainer = $('#search_results_container'),                                                   
-                searchListView = new CivicCommons.SearchResultsView({collection: CivicCommons.SearchResults, viewContainer: resultsContainer});
-                searchListView.render();   
-                                                   
-                                                   
-                                                   
-           }
-		});
-
-     /*
-     * List Views 
-     */
-    CivicCommons.SearchResultsView = Backbone.View.extend({
-        tagName: 'ul',
-        id: 'search-results-list',
-        attributes: {"data-role": 'listview'},
-
-        initialize: function() {
-          console.log(this);
-          this.collection.bind('add', this.render, this);
-          this.template = _.template($('#search-results-template').html());
-        },
-
-
-        render: function() {
-            var container = this.options.viewContainer,
-                categories = this.collection,
-                template = this.template,
-                listView = $(this.el);
-            
-            listView.empty();
-            categories.each(function(category){
-              listView.append(template(category.toJSON()));
-            });
-            container.html(listView);
-            container.trigger('create');
-            return this;
-        },
-        
-        add: function(item) {
-            var categoriesList = $('#categories-list'),
-                template = this.template;
-            
-            categoriesList.append(template(item.toJSON()));
-            categoriesList.listview('refresh');
-        }
-     });
-
-
- 
-    CivicCommons.Application = Backbone.View.extend({
+	CivicCommons.SearchFormView = Backbone.View.extend({
 		initialize: function(){
-			this.render();
+			this.template = _.template($('#search-form-template').html()); 
+            this.render();			
 		},
 		render: function(){
-                                                   
+			$(this.el).html(this.template);
+			$("#search-form-view").html(this.el).trigger("create");
+	        return this;								
 		},
 		events: {
+			"click #search-button": "doSearch",  
 		},
+	    parse: function(response) {
+	      return response;
+	    },
 		doSearch: function( event ){
+			//console.log(event);
+			var location_url = 'http://marketplace.civiccommons.org/api/v1/views/organization_api.json?display_id=field_view&filters[address_administrative_area_state=ca&filters[address_locality_city]=' + $('#search-term').val();
+			console.log(location_url);
+			var appCollection = new CivicCommons.AppCollection();
+			appCollection.url = location_url;
+			appCollection.fetch();			
+			console.log(this.parse());
+			console.log(appCollection.length);
+			CivicCommons._searchResultView = new CivicCommons.SearchResultView({collection: appCollection});
+			window.location = '#search-results-view';
+        },
+	});
+	
+	
+	CivicCommons.SearchResultView = Backbone.View.extend({
+		initialize: function(){
+			//console.log(this.collection);
+			$(this.collection).each(function(item) {
+				console.log('SearchResultView loop');
+			});
+			
+
+			this.template = _.template($('#search-results-template').html());
+		    this.render();			
+		},
+		render: function(){
+			
+			$(this.model).each(function(item) {
+//				console.log('SearchResultView render');
+//				$(this.el).html(this.template(item.toJSON()));				
+//			  this.$('ul.donuts').append(dv.render().el);
+			});
+			
+		    return this;								
+		},
+		events: {
+		    "click #search-results-container li": "viewApp"
+		},
+		viewApp: function( event ){
+			//console.log(event);
+			var location_url = 'http://marketplace.civiccommons.org/api/v1/node/'+ this.nodeId +  '.json';
+			var singleApp = new CivicCommons.AppCollection();
+			appCollection.url = location_url;
+			appCollection.fetch();			
+			CivicCommons._searchResultView = new CivicCommons.SearchResultView({model: appCollection});
+			this.template = _.template($('#application-template').html());                                                   
 		}
 	});
-		
-     CivicCommons.onSuccess = function(location) {
-        var googlemap_url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+location.coords.latitude + ','+  location.coords.longitude + '&sensor=true';
 
-        $.getJSON(googlemap_url, function(data) {
-               var city =  data.results[0].address_components[3].long_name;
-               var state =  data.results[0].address_components[4].long_name;
-               $('#searchterm').val(city);
-        });
-     
-     }
-     CivicCommons.onError = function (error) {
-     
-     }
+
+	CivicCommons.AppView = Backbone.View.extend({
+		initialize: function(){
+			this.template = _.template($('#application-template').html()); 
+		            this.render();			
+		},
+		render: function(){
+	        $(this.el).html(this.template(this.model.toJSON()));
+	        return this;								
+		},
+		events: {
+			"click #search-button": "doSearch",  
+            "click #search-results-container li": "viewApp"
+		},
+		doSearch: function( event ){
+			var location_url = 'http://marketplace.civiccommons.org/api/v1/views/organization_api.json?display_id=field_view&filters[address_administrative_area_state=ca&filters[address_locality_city]=' + $('#search-term').val();
+			AppCollection.url = location_url;
+			AppCollection.fetch();
+            this.template = _.template($('#search-results-template').html());                                                   			
+			
+        },
+        viewApp: function( event ){
+			var location_url = 'http://marketplace.civiccommons.org/api/v1/node/'+ this.nodeId +  '.json';
+			AppCollection.url = location_url;
+			AppCollection.fetch();          
+            this.template = _.template($('#application-template').html());                                                   
+        }
+	});
+	
+
+	CivicCommons.onSuccess = function(location) {
+		var googlemap_url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+location.coords.latitude + ','+  location.coords.longitude + '&sensor=true';
+		$.getJSON(googlemap_url, function(data) {
+		   var city =  data.results[0].address_components[3].long_name;
+		   var state =  data.results[0].address_components[4].long_name;
+		   $('#search-term').val(city);
+		});
+	}
+	CivicCommons.onError = function (error) {
+     	//alert(error);
+	}
  
-     CivicCommons.initData = function(){
-         navigator.geolocation.getCurrentPosition(CivicCommons.onSuccess, CivicCommons.onError); 
-     };
+	CivicCommons.getCurrentLocation = function(){
+		navigator.geolocation.getCurrentPosition(CivicCommons.onSuccess, CivicCommons.onError); 
+	};
  
  
 }(jQuery));
 
-$('#searchview').live('pageinit', function(event){
-    var SearchForm;                      
-    CivicCommons.initData();
-    SearchForm = new CivicCommons.SearchForm();
-    SearchForm.render();
-});
-
-$('#search_button').live('click', function(){
-                         
-//    CivicCommons.categories = new CivicCommons.Categories();
-//    CivicCommons.categories.fetch({async: false}); // use async false to have the app wait for data before rendering the list                      
+$('#localapps').live('pageinit', function(event){
+    CivicCommons.getCurrentLocation();
+    var searchFormView = new CivicCommons.SearchFormView();
+	//searchFormView.render();
 });

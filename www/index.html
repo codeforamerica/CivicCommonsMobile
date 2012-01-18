@@ -17,33 +17,39 @@
         
             
         <!-- templates -->
-        <script type="text/template" id="search_template">
+        <script type="text/template" id="search-form-template">
             <div data-role="fieldcontain">
-            <br>
-            <br>
-                <br>
-                <br>
                 <h1 style="display:none;">LocalAp.ps</h1>
                 <label for="search">Search Input:</label>
-                <input type="text" name="searchterm" id="searchterm" value="" />
-                <input type="button" name="searchbutton" id="searchbutton" value="Find Apps" />
+                <input type="text" name="searchTerm" id="search-term" value="" />
+                <input type="button" name="searchButton" id="search-button" value="Find Apps" />
             </div>            
         </script>
             
         <script type="text/template" id="search-results-template">
-            <li><a href="#application-list" identifier="<%= nid %>"><%= node_title %> </a></li>
+			<li><a href="#application-list" identifier="<%= nid %>">
+            <img src="images/album-bb.jpg" />
+            <h3><%= node_title %></h3>
+            <p><%= node_description %></p>
+            </li>
+        </script>
+
+        <script type="text/template" id="application-template">
+			<a href="#application-list" identifier="<%= nid %>">
+            <img src="images/album-bb.jpg" />
+            <h3><%= title %></h3>
+            <p><%= node_description %></p>
         </script>
             
-            
     </head> 
-    <body id="message">
+    <body id="localapps">
     
     <!-- Categories: #one -->
-    <div data-role="page" id="searchview" data-theme="c" style="background:url('css/images/background.png') 0 50px">
+    <div data-role="page" id="search-form-view" data-theme="c">
         <div data-role="header">
             <h1>Your Location</h1>
         </div>
-        <div id="search_container">
+        <div id="search-form-container">
         </div>
 
         <div data-role="footer">		
@@ -52,46 +58,31 @@
     </div>
         
     <!-- Categories: #one -->
-    <div data-role="page" id="searchresults" data-theme="c" >
+    <div data-role="page" id="search-results-view" data-theme="c" >
         <div data-role="header">
             <h1>Search Results</h1>
         </div>
         
-        <div id="search_results_container">
-            <ul data-role="listview" data-theme="c">
-            <li><a href="#application_view">YouGov</a></li>
-            <li><a href="#application_view">SF Park</a></li>
-            <li><a href="#application_view">Federal Register 2.0</a></li>
-            <li><a href="#application_view">Adopt A Hydrant</a></li>
-            </ul>
+        <div id="search-results-container">
         </div>
-        
+		
         <div data-role="footer">		
-            <a data-direction="reverse" href="#searchview">Back</a>
+            <a data-direction="reverse" href="#search-form-view">Back</a>
         </div><!-- /footer -->
         
     </div>        
 
     <!-- Categories: #one -->
-    <div data-role="page" id="application_view" data-theme="c" >
+    <div data-role="page" id="application-view" data-theme="c" >
         <div data-role="header">
             <h1>Application</h1>
         </div>
-        <div id="application_container" class="ui-grid-a">
-            <img src="http://marketplace.civiccommons.org/sites/default/files/styles/app_detail_logo/public/content/applications/logos/SF%20Park%20Logo.png">
-            <h1>SFPark Asset Manager</h1>
-            <p>SFPark Asset Manager is a project created with OpenGeo by the San Francisco Municipal Transportation Agency (SFMTA) to display parking availability in the San Francisco area. SFpark works by collecting and distributing real-time information about where parking is available so drivers can quickly find open spaces.</p>
-            
-            <p>To help achieve the right level of parking availability, SFpark periodically adjusts meter and garage pricing up and down to match demand. Demand-responsive pricing encourages drivers to park in underused areas and garages, reducing demand in overused areas. Through SFpark, real-time data and demand-responsive pricing work together to readjust parking patterns in the City so that parking is easier to find.</p>
-            <h2>PLACES WHERE THIS APP IS IN USE</h2>
-                <ul data-role="listview" data-theme="c">
-                    <li><a href="#application_view">New York</a></li>
-                    <li><a href="#application_view">Dallas</a></li>
-                </ul>                
+        <div id="application-container" class="ui-grid-a">
+        
         </div>
         
         <div data-role="footer">		
-            <a data-direction="reverse" href="#application_view">Back</a>
+            <a data-direction="reverse" href="#search-results-vieww">Back</a>
         </div><!-- /footer -->
         
     </div>        
