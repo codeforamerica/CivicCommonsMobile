@@ -8,7 +8,10 @@ var CivicCommons = {};
 	CivicCommons.App = Backbone.Model.extend();
 
 	CivicCommons.AppCollection = Backbone.Collection.extend({
-	    model: CivicCommons.App
+	    model: CivicCommons.App,
+		parse : function () { 
+			return CivicCommons.searchApps(); 
+		}
 	});
 				
 
@@ -20,7 +23,7 @@ var CivicCommons = {};
 			this.template = _.template($('#search-form-template').html()); 
             this.render();			
 		},
-		render: function(){
+		render: function(){			
 			$(this.el).html(this.template);
 			$("#search-form-view").html(this.el).trigger("create");
 	        return this;								
@@ -32,27 +35,30 @@ var CivicCommons = {};
 	      return response;
 	    },
 		doSearch: function( event ){
-			//console.log(event);
-			var location_url = 'http://marketplace.civiccommons.org/api/v1/views/organization_api.json?display_id=field_view&filters[address_administrative_area_state=ca&filters[address_locality_city]=' + $('#search-term').val();
-			console.log(location_url);
 			var appCollection = new CivicCommons.AppCollection();
-			appCollection.url = location_url;
-			appCollection.fetch();			
-			console.log(this.parse());
-			console.log(appCollection.length);
+			appCollection.parse();
+			//console.log('length: '+appCollection.length);
 			CivicCommons._searchResultView = new CivicCommons.SearchResultView({collection: appCollection});
-			window.location = '#search-results-view';
+			//window.location = '#search-results-view';
         },
 	});
 	
 	
 	CivicCommons.SearchResultView = Backbone.View.extend({
 		initialize: function(){
-			//console.log(this.collection);
-			$(this.collection).each(function(item) {
-				console.log('SearchResultView loop');
+			// console.log('Collection: '+this.collection);
+			// console.log('Model Length: '+this.model);
+			// 
+			console.log('Collection Length: '+this.collection.length);
+			console.log('SearchResultView collection');
+			
+			$(CivicCommons._searchResultView).each(function(item) {
+				console.log('SearchResultView loop' + item);
 			});
 			
+			this.collection.bind("add", function(ship) {
+
+			});
 
 			this.template = _.template($('#search-results-template').html());
 		    this.render();			
@@ -127,11 +133,36 @@ var CivicCommons = {};
 		navigator.geolocation.getCurrentPosition(CivicCommons.onSuccess, CivicCommons.onError); 
 	};
  
+	CivicCommons.searchApps = function(){
+		var searchURL = 'http://marketplace.civiccommons.org/api/v1/views/organization_api.jsonp?display_id=field_view&filters[address_administrative_area_state=ca&filters[address_locality_city]=' + $('#search-term').val();
+		console.log(searchURL);
+		$.ajax({
+			url: searchURL,
+			dataType: 'jsonp',
+			contentType: 'application/json',
+			success: function(data, status){
+				CivicCommons._searchResults = data;
+				// console.log('success ');
+				// console.log('status ' + status);
+				// console.log('data: '+ data);
+				//data loaded
+			},
+			error: function(data, status){
+				// console.log('failure ');
+				// console.log('status' + status);
+				// console.log('data: '+ data);
+				//error loading data
+			}
+		});			
+	};
+					 
  
 }(jQuery));
 
 $('#localapps').live('pageinit', function(event){
-    CivicCommons.getCurrentLocation();
+//    CivicCommons.getCurrentLocation();
+//    CivicCommons.getJSONP();
+	
     var searchFormView = new CivicCommons.SearchFormView();
 	//searchFormView.render();
 });
