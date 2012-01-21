@@ -27,18 +27,16 @@
         </script>
             
         <script type="text/template" id="search-results-template">
-			<li><a href="#application-list" identifier="<%= nid %>">
-            <img src="images/album-bb.jpg" />
-            <h3><%= node_title %></h3>
-            <p><%= node_description %></p>
-            </li>
+			<a href="#application-view" class="search-result" identifier="<%= nid %>">
+			<img src="images/album-bb.jpg" />
+			<h3><%= title %></h3>
+			</a>
         </script>
 
         <script type="text/template" id="application-template">
 			<a href="#application-list" identifier="<%= nid %>">
-            <img src="images/album-bb.jpg" />
-            <h3><%= title %></h3>
-            <p><%= node_description %></p>
+	        <h3><%= title %></h3>
+	        <h3><%= title %></h3>		
         </script>
             
     </head> 
@@ -62,9 +60,10 @@
         <div data-role="header">
             <h1>Search Results</h1>
         </div>
-        
-        <div id="search-results-container">
-        </div>
+
+
+		<ul data-role="listview" id="search-results-container">
+        </ul>
 		
         <div data-role="footer">		
             <a data-direction="reverse" href="#search-form-view">Back</a>
@@ -82,7 +81,7 @@
         </div>
         
         <div data-role="footer">		
-            <a data-direction="reverse" href="#search-results-vieww">Back</a>
+            <a data-direction="reverse" href="#search-results-view">Back</a>
         </div><!-- /footer -->
         
     </div>        
