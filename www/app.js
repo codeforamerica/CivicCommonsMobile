@@ -80,10 +80,10 @@ var CivicCommons = {};
 			//console.log(event);
 			var location_url = 'http://marketplace.civiccommons.org/api/v1/node/'+ this.nodeId +  '.json';
 			var singleApp = new CivicCommons.AppCollection();
-			appCollection.url = location_url;
-			appCollection.fetch();			
-			CivicCommons._searchResultView = new CivicCommons.SearchResultView({model: appCollection});
-			this.template = _.template($('#application-template').html());                                                   
+			singleApp.url = location_url;
+			singleApp.fetch();			
+			CivicCommons._searchResultView = new CivicCommons.AppView({model: singleApp});
+			// this.template = _.template($('#application-template').html());                                                 
 		}
 	});
 
@@ -148,19 +148,21 @@ var CivicCommons = {};
 				//data loaded
 			},
 			error: function(data, status){
-				// console.log('failure ');
+				console.error('failure loading apps: '+status);
 				// console.log('status' + status);
 				// console.log('data: '+ data);
 				//error loading data
 			}
 		});			
 	};
+	
+
 					 
  
 }(jQuery));
 
 $('#localapps').live('pageinit', function(event){
-//    CivicCommons.getCurrentLocation();
+    CivicCommons.getCurrentLocation();
 //    CivicCommons.getJSONP();
 	
     var searchFormView = new CivicCommons.SearchFormView();
