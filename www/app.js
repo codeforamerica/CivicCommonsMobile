@@ -21,7 +21,8 @@ var CivicCommons = {};
 					// console.log('status ' + status);
 					// console.log('data: '+ data);
 					CivicCommons._appCollection = data;
-					CivicCommons._searchResultView = new CivicCommons.AppListView({collection: CivicCommons._appCollection})				
+					CivicCommons._searchResultView = new CivicCommons.AppListView({collection: CivicCommons._appCollection});
+					console.log('AppCollection');
 				},
 				error: function(data, status){
 					console.log('failure ');
@@ -39,6 +40,7 @@ var CivicCommons = {};
      * List Views 
      */
 	CivicCommons.AppSearchView = Backbone.View.extend({
+//	    el: $('#search-form-view'),
 		initialize: function(){
 			this.template = _.template($('#search-form-template').html()); 
             this.render();			
@@ -57,7 +59,9 @@ var CivicCommons = {};
 		doSearch: function( event ){
 			var appCollection = new CivicCommons.AppCollection();
 			appCollection.parse();	
-			window.location = '#search-results-view';		
+			$.mobile.changePage( "#search-results-view");	
+			
+//			window.location = '#search-results-view';		
         },
 	});
 	
@@ -78,13 +82,20 @@ var CivicCommons = {};
 	 
 
 	CivicCommons.AppListView = Backbone.View.extend({
+	    el: $('#search-results-view'),
 	    initialize: function() {
+			console.log('AppListView');
 			this.render();
 	    },
-		events: {
-		    "click #search-results-container li": "viewApp"
-		},
+	    events: {
+	      "click .search-result":          "viewApp"
+	    },		
 	    render: function(eventName) {
+			
+//			console.log(this.events);
+			this.trigger("alert", "an event");
+
+			
 			console.log('Collection Length: ' + this.collection.length);
 			$.each(this.collection, function(index, item) {
 				var itemView = new CivicCommons.AppItemView({model: item}).el;
@@ -94,9 +105,10 @@ var CivicCommons = {};
 	        return this;
 	    },
 		viewApp: function( event ){
-			var appview = new CivicCommons.App();
-			appCollection.parse();	
-			window.location = '#application-view';		
+			console.log('hello world');
+			new CivicCommons.AppView();
+			
+			//window.location = '#application-view';		
 			
 			//console.log(event);
 			// var location_url = 'http://marketplace.civiccommons.org/api/v1/node/'+ this.nodeId +  '.json';
@@ -140,10 +152,6 @@ var CivicCommons = {};
  
 }(jQuery));
 
-$('#localapps').live('pageinit', function(event){
-//    CivicCommons.getCurrentLocation();
-//    CivicCommons.getJSONP();
-	
+$('#localapps').live('pageinit', function(event){	
     var searchFormView = new CivicCommons.AppSearchView();
-	//searchFormView.render();
 });
