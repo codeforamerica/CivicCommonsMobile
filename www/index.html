@@ -27,13 +27,12 @@
         </script>
             
         <script type="text/template" id="search-results-template">
-			<a href="#application-view" class="search-result" identifier="<%= nid %>">
+			<a href="#/application/<%= nid %>" class="search-result" identifier="<%= nid %>">
 			<h3><%= title %></h3>
 			</a>
         </script>
 
         <script type="text/template" id="application-template">
-			<a href="#application-list" identifier="<%= nid %>">
 	        <h3><%= title %></h3>
 	        <h3><%= title %></h3>		
         </script>
@@ -55,14 +54,18 @@
     </div>
         
     <!-- Categories: #one -->
-    <div data-role="page" id="search-results-view" data-theme="c" >
+    <div data-role="page" id="search" data-theme="c" >
         <div data-role="header">
             <h1>Search Results</h1>
         </div>
 
 
-		<ul data-role="listview" id="search-results-container">
-        </ul>
+		<h4>Basic List View</h4>
+
+		<ul data-role="listview" data-inset="true" id="search-results-container">
+		</ul>
+
+
 		
         <div data-role="footer">		
             <a data-direction="reverse" href="#search-form-view">Back</a>
