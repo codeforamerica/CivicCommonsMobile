@@ -25,7 +25,7 @@ $(document).bind('pageinit', function(event){
 			},
 		    model: CivicCommons.App,
 			parse: function(response){
-				var searchURL = 'http://marketplace.civiccommons.org/api/v1/views/organization_api.jsonp?display_id=node_view&filters[address_administrative_area_state=ca&filters[address_locality_city]=' + $('#search-term').val();
+				var searchURL = 'http://marketplace.civiccommons.org/api/v1/views/organization_api.jsonp?display_id=node_view&filters[address_administrative_area_state=' + this.state +  '&filters[address_locality_city]=' + this.city;
 				console.log(this.state);
 				console.log(this.city);
 				console.log(searchURL);
@@ -79,7 +79,7 @@ $(document).bind('pageinit', function(event){
 				appCollection.parse();	
 			
 				appCollection.bind('change', function(){ alert(1)});
-				$.mobile.changePage("#search/" + CivicCommons.AppCollection.city  + ',' + CivicCommons.AppCollection.state, "slide", false, false );
+//				$.mobile.changePage("#search/" + CivicCommons.AppCollection.city  + ',' + CivicCommons.AppCollection.state, "slide", false, false );
 //				console.log(CivicCommons.AppCollection.city);
 				
 			
@@ -114,12 +114,7 @@ $(document).bind('pageinit', function(event){
 		    events: {
 		      "click .search-result":          "viewApp"
 		    },		
-		    render: function(eventName) {
-			
-	//			console.log(this.events);
-				// this.trigger("alert", "an event");
-
-			
+		    render: function(eventName) {			
 				console.log('Collection Length: ' + this.collection.length);
 				$.each(this.collection, function(index, item) {
 					var itemView = new CivicCommons.AppItemView({model: item}).el;
@@ -130,7 +125,7 @@ $(document).bind('pageinit', function(event){
 		    },
 			viewApp: function( event ){
 				console.log('hello world');
-				new CivicCommons.AppView();			
+				new CivicCommons.g();			
 			}		
 		});
 	 
